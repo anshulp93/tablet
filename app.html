@@ -1,18 +1,97 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html;charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
         </title>
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+        <!-- <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" /> -->
+		<link rel="stylesheet" href="jquery.mobile-1.1.1.min.css" />
         <link rel="stylesheet" href="my.css" />
         <style>
             /* App custom styles */
         </style>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+		<script type="text/javascript">
+  
+				  var inps=document.getElementsByTagName('input');
+				  var a_count=0;
+				  var b_count=0;
+				  var c_count=0;
+				  var d_count=0;
+				  var answer=0;
+				  var a=0;
+				  var b=0;
+				  var cc=0;
+				  var d=0;
+				  var tracker=0;
+				  var skintype="";
+				  //var features_y='width=300,height=300,left=520,top=300,scrollbars=1';
+				  //var features_n='width=300,height=300,left=200,top=300,scrollbars=1';
+				  
+				  function displayPopUp() {
+				  
+						  for(c=0;c<inps.length;c++) {
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='a')) {
+							  a_count++;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='b')) {
+							  b_count++;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='c')) {
+							  c_count++;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='d')) {
+							  d_count++;
+							  }
+						  }
+						  
+						  for(c=0;c<inps.length;c++) {
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='a') &&(inps[c].name=='q1')) {
+							  tracker=1;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='b')&&(inps[c].name=='q1')) {
+							  tracker=2;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='c')&&(inps[c].name=='q1')) {
+							  tracker=3;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='d')&&(inps[c].name=='q1')) {
+							  tracker=4;
+							  }
+						  }
+						  
+						  answer=a_count;
+						  
+						  for(c=0;c<inps.length;c++) {
+						  
+							  if(b_count>answer) answer=b_count;
+							  if(c_count>answer) answer=c_count;
+							  if(d_count>answer) answer=d_count;
+							  
+							  if(answer==a_count && a_count!=b_count && a_count!=c_count && a_count!=d_count) {
+								  skintype="Normal";}
+							  else if(answer==b_count && b_count!=a_count && b_count!=c_count && b_count!=d_count) {      skintype="Dry";}
+							  else if(answer==c_count && c_count!=a_count && c_count!=b_count && c_count!=d_count) {		      skintype="Combination";}
+							  else if(answer==d_count && d_count!=a_count && d_count!=b_count && d_count!=c_count) {      skintype="Oily";}
+							  
+							  else if(answer==a_count && tracker==1) {skintype="Normal";}
+							  else if(answer==b_count && tracker==2) {skintype="Dry";}
+							  else if(answer==c_count && tracker==3) {skintype="Combination";}
+							  else if(answer==d_count && tracker==4) {skintype="Oily";}
+							  
+							  //document.write(skintype);
+							  document.getElementById('userInput').innerHTML = skintype;
+
+							  /*alert('a_ccount='+a_count+' b_ccount='+b_count+' c_ccount='+c_count+' d_ccount='+d_count+'answer='+answer);*/
+						  }
+				  
+				  }
+		</script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> -->
+		<script src="jquery.min.js">
         </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js">
+        <!-- <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"> -->
+		<script src="jquery.mobile-1.1.1.min.js">
         </script>
         <script src="my.js">
         </script>
@@ -130,18 +209,31 @@
                         </b>
                     </p>
                 </div>
-                <a data-role="button" href="#page5">
+                <a data-role="button" href="#page5" data-transition="slide">
                     Refresh
                 </a>
-                <a data-role="button" href="#page18">
+                <a data-role="button" href="#page18" data-transition="slide">
                     Relax
                 </a>
-                <a data-role="button" href="#page19">
+                <a data-role="button" href="#page19" data-transition="slide">
                     Sleep
                 </a>
-                <a data-role="button" href="#page22">
+                <a data-role="button" href="#page22" data-transition="slide">
                     Romance
                 </a>
+				
+				
+				<img src="images/Romance_1 copy.jpg" width="480" height="800" alt="Romance" usemap="#romancemap">
+				
+				<map name="romancemap">
+					<area shape="rect" coords="0,92,480,268" alt="Massage" href="#page1">
+					<area shape="rect" coords="0,269,480,445" alt="Essential" href="#page3">
+					<area shape="rect" coords="0,446,480,622" alt="Soaps" href="#page4">
+					<area shape="rect" coords="0,623,480,800" alt="BathSalt" href="#page5">
+				</map>
+				
+				
+				
             </div>
             <div data-role="tabbar" data-iconpos="top" data-theme="a">
                 <ul>
@@ -183,16 +275,16 @@
                         </b>
                     </p>
                 </div>
-                <a data-role="button" href="#page23">
+                <a data-role="button" href="#page23" data-transition="slide">
                     Normal
                 </a>
-                <a data-role="button" href="#page24">
+                <a data-role="button" href="#page24" data-transition="slide">
                     Oily
                 </a>
-                <a data-role="button" href="#page25">
+                <a data-role="button" href="#page25" data-transition="slide">
                     Dry
                 </a>
-                <a data-role="button" href="#page26">
+                <a data-role="button" href="#page26" data-transition="slide">
                     Combination
                 </a>
             </div>
@@ -1016,6 +1108,51 @@
                 </h3>
             </div>
             <div data-role="content">
+				<form action="#" onSubmit="displayPopUp()">
+					  <fieldset style="padding:20px;
+							border:3px double #000;">
+					  <legend>Skin Test</legend>
+					  <div style="margin:15px;">
+						  <ul style="list-style: none;">
+							  Texture of your skin
+								  <ul style="list-style: none;">
+								  <li><input type="radio" id="radio1" name="q1" value="a"/><label for="radio1"> Does not Shine</label>
+								  <li><input type="radio" id="radio2" name="q1" value="b" /><label for="radio2"> Is dry and sometimes slight flaking may appear</label></li>
+								  <li><input type="radio" id="radio3" name="q1" value="c"/><label for="radio3"> Shines on the nose</label></li>
+								  <li><input type="radio" id="radio4" name="q1" value="d" /><label for="radio4"> Shines all-over</label></li>
+								  </ul>
+							  </br>
+							  Appearance of pores on your skin
+								  <ul style="list-style: none;">
+								  <li><input type="radio" id="radio5" name="q2" value="a"/><label for="radio5"> Normal</label></li>
+								  <li><input type="radio" id="radio6" name="q2" value="b" /><label for="radio6"> Very fine</label></li>
+								  <li><input type="radio" id="radio7" name="q2" value="c"/><label for="radio7"> Visible</label></li>
+								  <li><input type="radio" id="radio8" name="q2" value="d" /><label for="radio8"> very opened</label></li>
+								  </ul>
+							  </br>
+							  How does your skin look like?
+								  <ul style="list-style: none;">
+								  <li><input type="radio" id="radio9" name="q3" value="a"/><label for="radio9"> Cool, fresh, and supple</label></li>
+								  <li><input type="radio" id="radio10" name="q3" value="b" /><label for="radio10"> Thin and lacking moisture</label></li>
+								  <li><input type="radio" id="radio11" name="q3" value="c"/><label for="radio11"> Shines on the "T" zone</label></li>
+								  <li><input type="radio" id="radio12" name="q3" value="d" /><label for="radio12"> Shines and has a tendency for ache</label></li>
+								  </ul>
+							  </br>
+							  How does your skin feel when touched?
+								  <ul style="list-style: none;">
+								  <li><input type="radio" id="radio13" name="q4" value="a"/><label for="radio13"> Supple</label></li>
+								  <li><input type="radio" id="radio14" name="q4" value="b" /><label for="radio14"> Dry or very dry</label></li>
+								  <li><input type="radio" id="radio15" name="q4" value="c"/><label for="radio15"> Oily on the forehead and nose</label></li>
+								  <li><input type="radio" id="radio16" name="q4" value="d" /><label for="radio16"> Oily all over</label></li>
+								  </ul>
+							</br>
+						  </ul>
+					  </div>
+					  <input type='button' onclick='displayPopUp()' value='know your skin'/>
+					  </br>
+					  <text style="font-family:Verdana; font-size:20px;"> Your skin type is </text> <b id='userInput'> __________</b> </h1>
+					  </fieldset>
+					  </form>
             </div>
             <div data-role="tabbar" data-iconpos="top" data-theme="a">
                 <ul>
